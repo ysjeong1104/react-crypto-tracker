@@ -85,7 +85,7 @@ const Coin=()=>{
                   </OverviewItem>
                   <OverviewItem>
                     <span>Price:</span>
-                    <span>{priceInfo?.quotes?.USD?.price}</span>
+                    <span>{priceInfo?.quotes?.USD?.price.toFixed(2)}</span>
                   </OverviewItem>
                 </Overview>
                 <Description>{coinInfo?.description}</Description>
