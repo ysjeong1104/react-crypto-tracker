@@ -5,7 +5,7 @@ import { fetchCoins } from "../api/api";
 import { Container, Header,CoinsList,Title,Coin,Loader,Img} from "../style/CoinStyle";
 import { Helmet } from "react-helmet";
 import { ICoin } from "../interface/CommonInterface";
-import { useSetRecoilState } from "recoil";
+import { useRecoilValue, useSetRecoilState } from "recoil";
 import { isDarkAtom } from "../states/ThemeAtoms";
 
 const Coins=()=>{
@@ -19,7 +19,7 @@ const Coins=()=>{
             setTimeout(()=>setLoding(current => !current),2000);
         })()
     },[])*/
-    //const isDark = useRecoilValue(isDarkAtom);
+    const isDark = useRecoilValue(isDarkAtom);
     const setDarkAtom = useSetRecoilState(isDarkAtom);
     const toggleDarkAtom=()=> setDarkAtom((current : boolean) => !current);
 
@@ -38,7 +38,7 @@ const Coins=()=>{
             </Helmet>
             <Header>
                 <Title>코인</Title>
-                <button onClick={toggleDarkAtom}>Toggle Dark Mode</button>
+                <button onClick={toggleDarkAtom}>{isDark ? "해제" : "다크모드" }</button>
             </Header>
             {isLoading ? <Loader>Loding...</Loader> :
             <CoinsList>
