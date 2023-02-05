@@ -91,29 +91,59 @@ const Price=( {quotes}:IQuotes)=>{
             </LargePanel>
             <PricePenel>
                 <Label>1시간 전보다</Label>
-				<span>{quotes?.USD.percent_change_1h}</span>
+				<span>
+                    {quotes?.USD.percent_change_1h}% 
+                    {quotes?.USD.percent_change_1h ? 
+                        quotes?.USD.percent_change_1h > 0 ? 
+                            <span style={{color:"tomato", marginLeft:"10px"}}>up</span> : <span style={{color:"skyblue", marginLeft:"10px"}}>down</span> : ""}
+                </span>
             </PricePenel>
             <PricePenel>
                 <Label>6시간 전보다</Label>
-				<span>{quotes?.USD.percent_change_6h}</span>
+				<span>
+                    {quotes?.USD.percent_change_6h}% 
+                    {quotes?.USD.percent_change_6h ? 
+                        quotes?.USD.percent_change_6h > 0 ? 
+                            <span style={{color:"tomato", marginLeft:"10px"}}>up</span> : <span style={{color:"skyblue", marginLeft:"10px"}}>down</span> : ""}
+                </span>
             </PricePenel>
 
             <PricePenel>
                 <Label>12시간 전보다</Label>
-				<span>{quotes?.USD.percent_change_12h}</span>
+				<span>
+                    {quotes?.USD.percent_change_12h}% 
+                    {quotes?.USD.percent_change_12h ? 
+                        quotes?.USD.percent_change_12h > 0 ? 
+                            <span style={{color:"red", marginLeft:"10px"}}>up</span> : <span style={{color:"skyblue", marginLeft:"10px"}}>down</span> : ""}
+                    </span>
             </PricePenel>
             <PricePenel>
                 <Label>24시간 전보다</Label>
-				<span>{quotes?.USD.percent_change_24h}</span>
+				<span>
+                    {quotes?.USD.percent_change_24h}% 
+                    {quotes?.USD.percent_change_24h ? 
+                        quotes?.USD.percent_change_24h > 0 ? 
+                            <span style={{color:"tomato", marginLeft:"10px"}}>up</span> : <span style={{color:"skyblue", marginLeft:"10px"}}>down</span> : ""}
+                </span>
             </PricePenel>
 
             <PricePenel>
                 <Label>7일 전보다</Label>
-				<span>{quotes?.USD.percent_change_7d}</span>
+				<span>
+                    {quotes?.USD.percent_change_7d}% 
+                    {quotes?.USD.percent_change_7d ? 
+                        quotes?.USD.percent_change_7d > 0 ? 
+                            <span style={{color:"tomato", marginLeft:"10px"}}>up</span> : <span style={{color:"blue", marginLeft:"10px"}}>down</span> : ""}
+                </span>
             </PricePenel>
             <PricePenel>
                 <Label>30일 전보다</Label>
-				<span>{quotes?.USD.percent_change_30d}</span>
+				<span>
+                    {quotes?.USD.percent_change_30d}% 
+                    {quotes?.USD.percent_change_30d ? 
+                        quotes?.USD.percent_change_30d > 0 ? 
+                            <span style={{color:"tomato", marginLeft:"10px"}}>up</span> : <span style={{color:"skyblue", marginLeft:"10px"}}>down</span> : ""}
+                </span>
             </PricePenel>
         </PriceGrid>
     )
