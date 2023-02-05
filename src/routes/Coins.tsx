@@ -1,12 +1,16 @@
 import React from "react";
 import { useQuery } from "react-query";
 import { Link } from "react-router-dom";
-import { fetchCoins } from "../api";
-import { Container, Header,CoinsList,Title,Coin,Loader,Img} from "../style/coinStyle";
+import { fetchCoins } from "../api/api";
+import { Container, Header,CoinsList,Title,Coin,Loader,Img} from "../style/CoinStyle";
 import { Helmet } from "react-helmet";
 import { ICoin } from "../interface/CommonInterface";
 
-const Coins=()=>{
+interface ICoinsProps{
+    toggleDark : ()=>void;
+}
+
+const Coins=({toggleDark}:ICoinsProps)=>{
     //https://coinicons-api.vercel.app/api/icon/
 /*    const [coins,setCoins] = useState<CoinInterface[]>([]);
     const [loding, setLoding] = useState(true);
@@ -18,6 +22,7 @@ const Coins=()=>{
         })()
     },[])*/
     const {isLoading,data} = useQuery<ICoin[]>("allCoins",fetchCoins)
+    
     return(
         <Container>
             <Helmet>
@@ -27,6 +32,7 @@ const Coins=()=>{
             </Helmet>
             <Header>
                 <Title>코인</Title>
+                <button onClick={toggleDark}>Toggle Dark Mode</button>
             </Header>
             {isLoading ? <Loader>Loding...</Loader> :
             <CoinsList>

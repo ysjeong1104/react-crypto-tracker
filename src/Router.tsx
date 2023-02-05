@@ -4,16 +4,20 @@ import {HashRouter,Switch,Route} from "react-router-dom";
 import Coins from "./routes/Coins";
 import Coin from "./routes/Coin";
 
-const Router=()=>{
+interface IRouterProps{
+    toggleDark : ()=>void;
+    isDark : boolean;
+}
+const Router=({toggleDark,isDark}:IRouterProps)=>{
     return(
         <HashRouter basename={process.env.PUBLIC_URL}>
             <Switch>
                 
                 <Route path="/:coinId">
-                    <Coin></Coin>
+                    <Coin isDark={isDark}></Coin>
                 </Route>
                 <Route path="/">
-                    <Coins/>
+                    <Coins toggleDark={toggleDark}/>
                 </Route> 
                                
             </Switch>

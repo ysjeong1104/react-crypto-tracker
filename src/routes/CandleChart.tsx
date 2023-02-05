@@ -1,14 +1,15 @@
 import React from "react";
 import { useQuery } from "react-query";
-import { fetchCoinHistory } from "../api";
+import { fetchCoinHistory } from "../api/api";
 import ApexChart from "react-apexcharts";
 import { IHistorical } from "../interface/CommonInterface";
 
 interface IChartProps{
-    coinId : string
+    coinId : string;
+    isDark : boolean;
 }
 
-const CandleChart=({coinId}:IChartProps)=>{
+const CandleChart=({coinId,isDark}:IChartProps)=>{
     const {isLoading, data : validData} = useQuery<IHistorical[]>(["ohlcv",coinId],()=>fetchCoinHistory(coinId),{refetchInterval:10000})
     
 
@@ -35,7 +36,7 @@ const CandleChart=({coinId}:IChartProps)=>{
 								text: "",
 							},
                             theme: {
-                                mode: "dark",
+                                mode: isDark ? "dark" : "light",
                             },
 							plotOptions: {
 								candlestick: {									

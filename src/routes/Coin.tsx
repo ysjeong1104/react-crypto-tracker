@@ -3,26 +3,29 @@
 import { Route, Switch, useLocation, useParams, useRouteMatch } from "react-router";
 import { Container,
     Title,Loader,GridHeader,Tabs,Tab,
-    Overview,OverviewItem,LinkStyleBtn,Description} from "../style/coinStyle";
+    Overview,OverviewItem,LinkStyleBtn,Description} from "../style/CoinStyle";
 import Price from "./Price";
 import Chart from "./Chart";
 import CandleChart from "./CandleChart";
 import { Link } from "react-router-dom";
 import { useQuery } from "react-query";
-import { fetchCoinInfo, fetchCoinTickers } from "../api";
+import { fetchCoinInfo, fetchCoinTickers } from "../api/api";
 import {Helmet} from "react-helmet";
 import { ICoinInfo,IPrice } from "../interface/CommonInterface";
 
 
 interface Params{
-    coinId:string
+  coinId:string;    
 }
 
 interface RouteState{
-    name :string;
+  name :string;
 }
 
-const Coin=()=>{
+interface ICoinProps{
+  isDark : boolean;
+}
+const Coin=({isDark}:ICoinProps)=>{
     const {coinId} = useParams<Params>();
     //console.log(coinid);
   //  const [loding, setLoding] = useState(true);
@@ -115,10 +118,10 @@ const Coin=()=>{
                         <Price quotes={priceInfo?.quotes }></Price>  
                     </Route>
                     <Route path={`/:coinId/chart`}>
-                        <Chart coinId={coinId}></Chart>
+                        <Chart isDark={isDark} coinId={coinId}></Chart>
                     </Route>
                     <Route path={`/:coinId/candle`}>
-                        <CandleChart coinId={coinId}></CandleChart>
+                        <CandleChart isDark={isDark} coinId={coinId}></CandleChart>
                     </Route>
                 </Switch>               
               </>
