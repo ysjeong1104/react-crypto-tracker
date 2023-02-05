@@ -25,6 +25,10 @@ const Coins=()=>{
 
     const {isLoading,data} = useQuery<ICoin[]>("allCoins",fetchCoins)
     
+    const ImgOnError=(e : React.SyntheticEvent<HTMLImageElement,Event>)=>{        
+        e.currentTarget.src = "";
+
+    }
     return(
         <Container>
             <Helmet>
@@ -46,7 +50,9 @@ const Coins=()=>{
                                 name : coin.name,
                             }
                         }}>
-                            <Img src={`https://cryptocurrencyliveprices.com/img/${coin.id.toLowerCase()}.png`} alt=''/>
+                            <Img src={`https://cryptocurrencyliveprices.com/img/${coin.id.toLowerCase()}.png`} 
+                                onError={ImgOnError}
+                                alt=''/>
                             {coin.name} &rarr;
                         </Link>
                     </Coin>
