@@ -33,12 +33,12 @@ const Coins=()=>{
                 {data?.slice(0,100).map((coin)=>(
                     <Coin key={coin.id}>
                         <Link to={{
-                            pathname : `/${coin.id}`,
+                            pathname : `/${coin.id}/price`,
                             state:{
                                 name : coin.name,
                             }
                         }}>
-                            <Img src={`https://coinicons-api.vercel.app/api/icon/${coin.symbol.toLowerCase()}`} alt=''/>
+                            <Img src={`https://cryptocurrencyliveprices.com/img/${coin.id.toLowerCase()}.png`} alt=''/>
                             {coin.name} &rarr;
                         </Link>
                     </Coin>

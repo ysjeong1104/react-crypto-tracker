@@ -7,7 +7,7 @@ export interface IHistorical{
     low:number;
     close:number;
     volume:number;
-    market_cap:number;
+    market_cap:number;    
 }
 
 export interface ICoin {

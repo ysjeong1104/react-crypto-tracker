@@ -13,6 +13,8 @@ const Chart=({coinId}:IChartProps)=>{
         <div>
             {
                 isLoading? "Loading Chart..." : 
+
+                data?.length ? data?.length > 0 &&
                 <ApexChart type="line" 
                     series={[                       
                         {
@@ -68,7 +70,7 @@ const Chart=({coinId}:IChartProps)=>{
                             }
                         }
                     }}
-                />
+                /> : <div>차트데이터가 없습니다.</div>
             }
         </div>
     )

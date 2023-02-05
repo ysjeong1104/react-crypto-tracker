@@ -60,7 +60,7 @@ const Coin=()=>{
     return(
         <Container>
             <Helmet>
-                <title>
+                <title>                    
                     { state?.name ? state?.name : loading ? "Loding..." : coinInfo?.name }
                 </title>
             </Helmet>
@@ -85,7 +85,7 @@ const Coin=()=>{
                   </OverviewItem>
                   <OverviewItem>
                     <span>Price:</span>
-                    <span>{priceInfo?.quotes.USD.price.toFixed(2)}</span>
+                    <span>{priceInfo?.quotes?.USD?.price}</span>
                   </OverviewItem>
                 </Overview>
                 <Description>{coinInfo?.description}</Description>

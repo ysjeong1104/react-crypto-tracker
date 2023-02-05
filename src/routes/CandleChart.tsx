@@ -9,12 +9,14 @@ interface IChartProps{
 }
 
 const CandleChart=({coinId}:IChartProps)=>{
-    const {isLoading, data : validData} = useQuery<IHistorical[]>(["ohlcv",coinId],()=>fetchCoinHistory(coinId),{refetchInterval:10000})   
+    const {isLoading, data : validData} = useQuery<IHistorical[]>(["ohlcv",coinId],()=>fetchCoinHistory(coinId),{refetchInterval:10000})
+    
 
     return (
         <div>
         {
             isLoading ? "Loading Chart..." : 
+            validData?.length ? validData?.length > 0 &&
             <ApexChart
 						type="candlestick"
 						series={[
@@ -83,7 +85,7 @@ const CandleChart=({coinId}:IChartProps)=>{
 							},
 						
 						}}
-					/>
+					/>: <div>차트데이터가 없습니다.</div>
         }
         </div>
     );
