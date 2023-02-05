@@ -55,8 +55,7 @@ const Coin=()=>{
     const {isLoading : tickersLoading, data : priceInfo} 
         = useQuery<IPrice>(["ticker",coinId],
             ()=>fetchCoinTickers(coinId),
-            {refetchInterval: 5000})
-    console.log(priceInfo);
+            {refetchInterval: 5000})    
     const loading = infoLoading || tickersLoading;
     return(
         <Container>

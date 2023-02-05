@@ -9,8 +9,7 @@ interface IChartProps{
 }
 
 const CandleChart=({coinId}:IChartProps)=>{
-    const {isLoading, data : validData} = useQuery<IHistorical[]>(["ohlcv",coinId],()=>fetchCoinHistory(coinId),{refetchInterval:10000})
-    console.log(validData);
+    const {isLoading, data : validData} = useQuery<IHistorical[]>(["ohlcv",coinId],()=>fetchCoinHistory(coinId),{refetchInterval:10000})   
 
     return (
         <div>
