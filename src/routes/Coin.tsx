@@ -22,10 +22,7 @@ interface RouteState{
   name :string;
 }
 
-interface ICoinProps{
-  isDark : boolean;
-}
-const Coin=({isDark}:ICoinProps)=>{
+const Coin=()=>{
     const {coinId} = useParams<Params>();
     //console.log(coinid);
   //  const [loding, setLoding] = useState(true);
@@ -118,10 +115,10 @@ const Coin=({isDark}:ICoinProps)=>{
                         <Price quotes={priceInfo?.quotes }></Price>  
                     </Route>
                     <Route path={`/:coinId/chart`}>
-                        <Chart isDark={isDark} coinId={coinId}></Chart>
+                        <Chart coinId={coinId}></Chart>
                     </Route>
                     <Route path={`/:coinId/candle`}>
-                        <CandleChart isDark={isDark} coinId={coinId}></CandleChart>
+                        <CandleChart coinId={coinId}></CandleChart>
                     </Route>
                 </Switch>               
               </>

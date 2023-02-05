@@ -3,16 +3,17 @@ import { useQuery } from "react-query";
 import { fetchCoinHistory } from "../api/api";
 import ApexChart from "react-apexcharts";
 import { IHistorical } from "../interface/CommonInterface";
+import { useRecoilValue } from "recoil";
+import { isDarkAtom } from "../states/ThemeAtoms";
 
 interface IChartProps{
-    coinId : string;
-    isDark : boolean;
+    coinId : string;    
 }
 
-const CandleChart=({coinId,isDark}:IChartProps)=>{
-    const {isLoading, data : validData} = useQuery<IHistorical[]>(["ohlcv",coinId],()=>fetchCoinHistory(coinId),{refetchInterval:10000})
+const CandleChart=({coinId}:IChartProps)=>{
+    const isDark = useRecoilValue(isDarkAtom);
+    const {isLoading, data : validData} = useQuery<IHistorical[]>(["ohlcv",coinId],()=>fetchCoinHistory(coinId),{refetchInterval:10000})   
     
-
     return (
         <div>
         {
@@ -30,7 +31,7 @@ const CandleChart=({coinId,isDark}:IChartProps)=>{
 							},
 						]}
 						width="100%"
-						height="160px"
+						height="300px"
 						options={{
 							noData: {
 								text: "",

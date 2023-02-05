@@ -5,12 +5,10 @@ import { fetchCoins } from "../api/api";
 import { Container, Header,CoinsList,Title,Coin,Loader,Img} from "../style/CoinStyle";
 import { Helmet } from "react-helmet";
 import { ICoin } from "../interface/CommonInterface";
+import { useSetRecoilState } from "recoil";
+import { isDarkAtom } from "../states/ThemeAtoms";
 
-interface ICoinsProps{
-    toggleDark : ()=>void;
-}
-
-const Coins=({toggleDark}:ICoinsProps)=>{
+const Coins=()=>{
     //https://coinicons-api.vercel.app/api/icon/
 /*    const [coins,setCoins] = useState<CoinInterface[]>([]);
     const [loding, setLoding] = useState(true);
@@ -21,6 +19,10 @@ const Coins=({toggleDark}:ICoinsProps)=>{
             setTimeout(()=>setLoding(current => !current),2000);
         })()
     },[])*/
+    //const isDark = useRecoilValue(isDarkAtom);
+    const setDarkAtom = useSetRecoilState(isDarkAtom);
+    const toggleDarkAtom=()=> setDarkAtom((current : boolean) => !current);
+
     const {isLoading,data} = useQuery<ICoin[]>("allCoins",fetchCoins)
     
     return(
@@ -32,7 +34,7 @@ const Coins=({toggleDark}:ICoinsProps)=>{
             </Helmet>
             <Header>
                 <Title>코인</Title>
-                <button onClick={toggleDark}>Toggle Dark Mode</button>
+                <button onClick={toggleDarkAtom}>Toggle Dark Mode</button>
             </Header>
             {isLoading ? <Loader>Loding...</Loader> :
             <CoinsList>
