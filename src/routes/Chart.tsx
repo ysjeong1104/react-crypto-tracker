@@ -5,11 +5,15 @@ import ApexChart from "react-apexcharts";
 import { IHistorical } from "../interface/CommonInterface";
 import { useRecoilValue } from "recoil";
 import { isDarkAtom } from "../states/ThemeAtoms";
-interface IChartProps{
-    coinId : string;    
+import { useOutletContext } from "react-router-dom";
+
+interface IChartProps {
+	coinId: string;
 }
 
-const Chart=({coinId}:IChartProps)=>{
+const Chart=()=>{
+
+    const {coinId} = useOutletContext<IChartProps>();
     const isDark = useRecoilValue(isDarkAtom);
     const {isLoading,data} = useQuery<IHistorical[]>(["ohlcv",coinId],()=>fetchCoinHistory(coinId),{refetchInterval:10000})
     return (

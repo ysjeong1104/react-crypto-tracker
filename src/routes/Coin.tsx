@@ -1,12 +1,10 @@
 //import React, { useEffect } from "react";
 ///import { useState } from "react";
-import { Route, Switch, useLocation, useParams, useRouteMatch } from "react-router";
+import { useLocation, useParams, useMatch, Outlet} from "react-router";
 import { Container,
     Title,Loader,GridHeader,Tabs,Tab,
     Overview,OverviewItem,LinkStyleBtn,Description} from "../style/CoinStyle";
-import Price from "./Price";
-import Chart from "./Chart";
-import CandleChart from "./CandleChart";
+
 import { Link } from "react-router-dom";
 import { useQuery } from "react-query";
 import { fetchCoinInfo, fetchCoinTickers } from "../api/api";
@@ -14,26 +12,25 @@ import {Helmet} from "react-helmet";
 import { ICoinInfo,IPrice } from "../interface/CommonInterface";
 
 
-interface Params{
-  coinId:string;    
-}
-
+/*
 interface RouteState{
   name :string;
 }
+*/
+
 
 const Coin=()=>{
-    const {coinId} = useParams<Params>();
+    const { coinId } = useParams<string>();
     //console.log(coinid);
   //  const [loding, setLoding] = useState(true);
-    const { state  }  = useLocation<RouteState>();
+    const { state  }  = useLocation();
 
   //  const [coinInfo, setCoinInfo] = useState<ICoinInfoData>();
    // const [priceInfo, setPriceInfo] = useState<IPriceData>();
 
-    const priceMatch = useRouteMatch(`/:coinId/price`);
-    const chartMatch = useRouteMatch(`/:coinId/chart`);
-    const candletMatch = useRouteMatch(`/:coinId/candle`);
+    const priceMatch = useMatch(`/:coinId/price`);
+    const chartMatch = useMatch(`/:coinId/chart`);
+    const candletMatch = useMatch(`/:coinId/candle`);
 
     /*useEffect(()=>{
         (async()=>{
@@ -110,17 +107,12 @@ const Coin=()=>{
                         <Link to={{ pathname : `/${coinId}/price`}}>price</Link>                
                     </Tab>
                 </Tabs>
-                <Switch>
-                    <Route path={`/:coinId/price`}>
-                        <Price quotes={priceInfo?.quotes }></Price>  
-                    </Route>
-                    <Route path={`/:coinId/chart`}>
-                        <Chart coinId={coinId}></Chart>
-                    </Route>
-                    <Route path={`/:coinId/candle`}>
-                        <CandleChart coinId={coinId}></CandleChart>
-                    </Route>
-                </Switch>               
+                <Outlet context={{coinId, priceInfo}}/>
+              {/*}  <Routes>
+                    <Route path={`/:coinId/price`} element={<Price quotes={priceInfo?.quotes }>} />                       
+                    <Route path={`/:coinId/chart`} element={<Chart coinId={coinId}>} />
+                    <Route path={`/:coinId/candle`} element={<CandleChart coinId={coinId}>} />                    
+    </Routes>               */}
               </>
             }
         </Container>

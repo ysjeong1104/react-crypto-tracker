@@ -46,9 +46,10 @@ const Coins=()=>{
                     <Coin key={coin.id}>
                         <Link to={{
                             pathname : `/${coin.id}/price`,
-                            state:{
-                                name : coin.name,
-                            }
+                            
+                        }} 
+                        state = {{
+                            name : coin.name,
                         }}>
                             <Img src={`https://cryptocurrencyliveprices.com/img/${coin.id.toLowerCase()}.png`} 
                                 onError={ImgOnError}

@@ -8,17 +8,17 @@ export const fetchCoins= ()=>{
     //return result;
 }
 
-export const fetchCoinInfo=(coinId : string)=>{
+export const fetchCoinInfo=(coinId : string | undefined)=>{
     return fetch(`${BASE_URL}/coins/${coinId}`)
         .then((response)=> response.json());
 }
 
-export const fetchCoinTickers=(coinId : string)=>{
+export const fetchCoinTickers=(coinId : string| undefined)=>{
     return fetch(`${BASE_URL}/tickers/${coinId}`)
         .then((response)=> response.json());
 }
 
-export const fetchCoinHistory=(coinId:string)=>{    
+export const fetchCoinHistory=(coinId:string| undefined)=>{    
  /*   const endDate= Math.floor( Date.now() / 1000);
     const startDate = endDate - 60*60*23; //무료이기 때문에 24시간 이전까지 자료만 가져올수있음 
     return fetch(`${BASE_URL}/coins/${coinId}/ohlcv/historical?start=${startDate}&end=${endDate}`)

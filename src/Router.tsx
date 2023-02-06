@@ -1,23 +1,27 @@
 
 import React from "react";
-import {HashRouter,Switch,Route} from "react-router-dom";
+import {HashRouter ,Routes,Route} from "react-router-dom";
 import Coins from "./routes/Coins";
 import Coin from "./routes/Coin";
+import Price from "./routes/Price";
+import Chart from "./routes/Chart";
+import CandleChart from "./routes/CandleChart";
 
 
 const Router=()=>{
+    
+    
     return(
-        <HashRouter basename={process.env.PUBLIC_URL}>
-            <Switch>
-                
-                <Route path="/:coinId">
-                    <Coin />
+        <HashRouter>
+            <Routes>       
+                <Route path="/" element={<Coins/>} />         
+                <Route path="/:coinId" element={<Coin />} >
+                    <Route path="price" element={<Price />} /> 
+                    <Route path="chart" element={<Chart />} />
+                    <Route path="candle" element={<CandleChart/>} />   
                 </Route>
-                <Route path="/">
-                    <Coins/>
-                </Route> 
-                               
-            </Switch>
+                
+            </Routes>
         </HashRouter>
     )
 }
