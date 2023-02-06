@@ -10,9 +10,11 @@ import CandleChart from "./routes/CandleChart";
 
 const Router=()=>{
     
-    
-    return(
-        <BrowserRouter basename={process.env.PUBLIC_URL}>
+    {/*  <BrowserRouter basename={process.env.PUBLIC_URL}>  
+        배포 시 위 라인으로 수정
+    */}
+    return(      
+        <BrowserRouter>
             <Routes>       
                 <Route path="/" element={<Coins/>} />         
                 <Route path="/:coinId" element={<Coin />} >

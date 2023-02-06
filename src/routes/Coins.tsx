@@ -37,7 +37,7 @@ const Coins=()=>{
                 </title>
             </Helmet>
             <Header>
-                <Title>코인F</Title>
+                <Title>코인</Title>
                 <button onClick={toggleDarkAtom}>{isDark ? "해제" : "다크모드" }</button>
             </Header>
             {isLoading ? <Loader>Loding...</Loader> :
