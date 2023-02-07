@@ -107,6 +107,7 @@ const Coin=()=>{
                         <Link to={{ pathname : `/${coinId}/price`}}>price</Link>                
                     </Tab>
                 </Tabs>
+                {/* Outlet 이용하여 해당 페이지의 하위에 있는 컴포넌트에 context 통해서 값전달 받는 부분에서는 useOutletConetext사용 */}
                 <Outlet context={{coinId, priceInfo}}/>
               {/*}  <Routes>
                     <Route path={`/:coinId/price`} element={<Price quotes={priceInfo?.quotes }>} />                       

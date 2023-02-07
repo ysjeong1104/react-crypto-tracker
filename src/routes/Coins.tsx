@@ -18,7 +18,7 @@ const Coins=()=>{
             setCoins(result.slice(0,100));
             setTimeout(()=>setLoding(current => !current),2000);
         })()
-    },[])*/
+    },[])*/    
     const isDark = useRecoilValue(isDarkAtom);
     const setDarkAtom = useSetRecoilState(isDarkAtom);
     const toggleDarkAtom=()=> setDarkAtom((current : boolean) => !current);
